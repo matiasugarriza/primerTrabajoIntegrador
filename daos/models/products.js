@@ -4,36 +4,36 @@ const ProductSchema = new mongoose.Schema({
     title: {
         type:String,
         unique:true,
-        require:true
+        required:true
     },
     description: {
         type:String,
-        require:true
+        required:true
     },
     price: {
         type:Number,
-        require:true
+        required:true
     },
     thumbnail: {
         type:String,
-        require:true
+        required:true
     },
     code: {
         type:String,
         unique:true,
-        require:true
+        required:true
     },
     stock: {
         type:Number,
-        require:true
+        required:true
     },
     status: {
         type:Boolean,
-        require:true
+        required:true
     },
     category: {
         type:String,
-        require:true
+        required:true
     },
 })
 const Product = mongoose.model('product', ProductSchema)

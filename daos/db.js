@@ -9,19 +9,24 @@ class ManagerMongo {
             })
             .catch(err => console.log(err))
     }
-    create() {
-
+    create(res,Schema,data) {
+        Schema.create(data)
+            .then(respuesta => {
+                res.status(201).send({msg:'Documento Creado con Éxito'})
+                console.log(respuesta)
+            }).catch(err => {
+                console.log(err)
+            })    
     }
     read(res,Schema) {
         Schema.find()
-            .then(respuesta => {
-                res.status(201).send({
-                    msg: 'Documento Encontrado',
-                    data: respuesta
-                })
-            }).catch(err => {
-                console.log(err)
-            })
+        .then(respuesta => {
+            let  response = respuesta
+            res.status(201).render('index',  { response })
+            console.log(response)
+        }).catch(err => {
+            console.log(err)
+        })
            
     }
     update() {
