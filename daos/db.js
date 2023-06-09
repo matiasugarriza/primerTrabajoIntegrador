@@ -26,8 +26,7 @@ class ManagerMongo {
             console.log(response)
         }).catch(err => {
             console.log(err)
-        })
-           
+        })    
     }
     update() {
 
