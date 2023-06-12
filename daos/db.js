@@ -18,18 +18,37 @@ class ManagerMongo {
                 console.log(err)
             })    
     }
-    read(res,Schema) {
-        Schema.find()
+    read(res,Schema,params) {
+        if (params == undefined){
+            Schema.find().lean()
+            .then(respuesta => {
+                let  response = respuesta
+                res.status(201).render('index',  { response })
+                console.log(response)
+            }).catch(err => {
+                console.log(err)
+            })  
+        }else{
+            Schema.findById(params).lean()
+            .then(respuesta => {
+                let  response = [respuesta]
+                res.status(201).render('index',  { response })
+                console.log(response)
+            }).catch(err => {
+                console.log(err)
+            })  
+        }
+  
+    }
+    update(res, Schema, data, params) {
+        Schema.findOne(params).lean()
         .then(respuesta => {
             let  response = respuesta
             res.status(201).render('index',  { response })
             console.log(response)
         }).catch(err => {
             console.log(err)
-        })    
-    }
-    update() {
-
+        })
     }
     delete() {
 

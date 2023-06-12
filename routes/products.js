@@ -11,7 +11,6 @@ let managerMongo = new ManagerMongo
 router.get('/', (req, res) => {
     //Manager Mongodb
     managerMongo.read(res, Schema)
-
     //Manager FileSystem
     /*     let manager = new ProductManager("./products.json")
         const products = manager.getProducts()
@@ -28,8 +27,11 @@ router.get('/realTimeProducts', (req, res) => {
 })
 
 router.get('/:id', (req, res) => {
+    //Manager Mongodb
+    let params = req.params.id
+    managerMongo.read(res, Schema, params)
     //Manager FileSystem
-    let manager = new ProductManager("./products.json")
+/*     let manager = new ProductManager("./products.json")
     let id = req.params.id
     let productRes = manager.getProductById(id)
     productRes.then(product => {
@@ -37,7 +39,7 @@ router.get('/:id', (req, res) => {
         res.send({ menssage: "Productos", data: response })
     }).catch(err => {
         console.log(err)
-    })
+    }) */
 })
 
 router.post('/', (req, res) => {
@@ -57,7 +59,8 @@ router.post('/', (req, res) => {
 
 router.delete('/:id', (req, res) => {
     //Manager Mongodb
-    managerMongo.read(req, res, Schema)
+    let params = req.params
+    managerMongo.delete(res, Schema, data, params)
     //Manager FileSystem
     /* let manager = new ProductManager("./products.json")
     let productRes = manager.deleteProduct(req.params.id)
@@ -70,15 +73,19 @@ router.delete('/:id', (req, res) => {
 })
 
 router.put('/:id', (req, res) => {
+    //Manager Mongodb
+    let data = req.body
+    let params = req.params.id
+    managerMongo.update(res, Schema, data, params)
     //Manager FileSystem
-    let manager = new ProductManager("./products.json")
+/*     let manager = new ProductManager("./products.json")
     let productRes = manager.updateProduct(req.params.id, req.body.title, req.body.description, req.body.price, req.body.thumbnail, req.body.code, req.body.stock, req.body.status, req.body.category)
     productRes.then(product => {
         let response = product
         res.send({ data: response, message: 'Producto Actualizado' })
     }).catch(err => {
         console.log(err)
-    })
+    }) */
 })
 
 module.exports = router
