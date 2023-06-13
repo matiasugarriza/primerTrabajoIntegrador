@@ -59,8 +59,8 @@ router.post('/', (req, res) => {
 
 router.delete('/:id', (req, res) => {
     //Manager Mongodb
-    let params = req.params
-    managerMongo.delete(res, Schema, data, params)
+    let params = req.params.id
+    managerMongo.delete(res, Schema, params)
     //Manager FileSystem
     /* let manager = new ProductManager("./products.json")
     let productRes = manager.deleteProduct(req.params.id)

@@ -2,7 +2,7 @@
     <h1>Productos</h1>
     {{#each response}}
         <div>
-            <strong>{{title}}</strong>
+            <strong><a href="http://localhost:8080/products/{{_id}}">{{title}}</a></strong>
             <p>${{price}}</p>
         </div>
     {{/each}}
